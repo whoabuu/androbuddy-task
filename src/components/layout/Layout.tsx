@@ -1,25 +1,53 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import Container from "./Container";
+
+const NAV_LINKS = [
+  { to: "/", label: "Home", end: true },
+  { to: "/products", label: "All Products", end: false },
+];
+
+function navClass({ isActive }: { isActive: boolean }): string {
+  return `border-b-2 py-1 font-medium transition-colors ${
+    isActive ? "border-black" : "border-transparent hover:border-neutral-400"
+  }`;
+}
 
 export default function Layout() {
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50 text-gray-900">
-      <header className="border-b bg-white">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-          <Link to="/" className="text-xl font-bold tracking-tight">
+    <div className="flex min-h-screen flex-col">
+      <div className="bg-surface py-2 text-center text-xs font-medium">
+        Demo store · Free shipping on orders over $50
+      </div>
+
+      <header className="sticky top-0 z-40 border-b border-neutral-200 bg-white">
+        <Container className="flex h-16 items-center justify-between">
+          <Link
+            to="/"
+            className="text-2xl font-extrabold uppercase italic tracking-tighter"
+          >
             ShopSphere
           </Link>
-          <Link to="/products" className="text-sm font-medium hover:underline">
-            All products
-          </Link>
-        </nav>
+          <nav className="flex items-center gap-6">
+            {NAV_LINKS.map(({ to, label, end }) => (
+              <NavLink key={to} to={to} end={end} className={navClass}>
+                {label}
+              </NavLink>
+            ))}
+          </nav>
+        </Container>
       </header>
 
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8">
+      <main className="flex-1">
         <Outlet />
       </main>
 
-      <footer className="border-t bg-white py-6 text-center text-sm text-gray-500">
-        ShopSphere demo · data from Fake Store API
+      <footer className="bg-black py-10 text-neutral-400">
+        <Container className="flex flex-col gap-2 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <span className="text-lg font-extrabold uppercase italic tracking-tighter text-white">
+            ShopSphere
+          </span>
+          <span>© 2026 ShopSphere demo · Data from Fake Store API</span>
+        </Container>
       </footer>
     </div>
   );
