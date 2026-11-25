@@ -5,11 +5,7 @@ export interface Crumb {
   to?: string;
 }
 
-interface BreadcrumbsProps {
-  items: Crumb[];
-}
-
-export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+export default function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-6 text-sm text-neutral-500">
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">

@@ -1,6 +1,5 @@
 import { useState, type ImgHTMLAttributes } from "react";
 
-/** Lazy-loaded <img> that fades in once the file has loaded. */
 export default function FadeImage({
   className = "",
   onLoad,

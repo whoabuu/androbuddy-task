@@ -10,8 +10,6 @@ const ARROW =
   "border border-neutral-300 hover:border-black disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-neutral-300";
 
 export default function Pagination({ page, totalPages, onChange }: PaginationProps) {
-  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-
   return (
     <nav aria-label="Pagination" className="mt-14 flex flex-wrap items-center justify-center gap-2">
       <button
@@ -24,7 +22,7 @@ export default function Pagination({ page, totalPages, onChange }: PaginationPro
         ←
       </button>
 
-      {pages.map((p) => (
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
         <button
           key={p}
           type="button"

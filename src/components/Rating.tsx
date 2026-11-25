@@ -1,8 +1,7 @@
-import type { Rating as RatingModel } from "../../types/product";
+import type { Rating as RatingModel } from "../types/product";
 
 interface RatingProps {
   rating: RatingModel;
-  /** "compact" renders (259); "full" renders 259 reviews. */
   countStyle?: "compact" | "full";
   size?: "sm" | "md";
 }

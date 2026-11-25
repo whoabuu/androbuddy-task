@@ -42,7 +42,6 @@ export function useAsync<T>(
       });
 
     return () => controller.abort();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [...deps, enabled, attempt]);
 
   return { ...state, retry };

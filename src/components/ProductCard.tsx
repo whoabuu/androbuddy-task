@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
-import type { Product } from "../../types/product";
-import { formatPrice } from "../../utils/format";
-import { routes } from "../../utils/routes";
-import FadeImage from "../ui/FadeImage";
-import Rating from "../ui/Rating";
+import type { Product } from "../types/product";
+import FadeImage from "./FadeImage";
+import Rating from "./Rating";
 
-interface ProductCardProps {
-  product: Product;
+const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
+
+export function formatPrice(value: number): string {
+  return usd.format(value);
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link
-      to={routes.product(product.id)}
+      to={`/products/${product.id}`}
       className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
     >
       <div className="aspect-square overflow-hidden bg-surface">
