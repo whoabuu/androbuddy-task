@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom";
+import NotFoundState from "../components/ui/NotFoundState";
+import { routes } from "../utils/routes";
 
 export default function NotFoundPage() {
   return (
-    <div className="py-20 text-center">
-      <h1 className="text-3xl font-bold">Page not found</h1>
-      <Link to="/" className="mt-4 inline-block text-blue-600 hover:underline">
-        Back to home
-      </Link>
-    </div>
+    <NotFoundState
+      title="Page not found"
+      message="The page you're looking for doesn't exist or may have moved."
+      actionTo={routes.home}
+      actionLabel="Back to home"
+    />
   );
 }
